@@ -6,6 +6,7 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
+import { authReducer } from '@store/auth';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,7 +14,9 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
     // NgRx Store Configuration
-    provideStore({}), // We'll add reducers in next steps
+    provideStore({
+      auth: authReducer
+    }),
     provideEffects([]), // We'll add effects in next steps
     // NgRx DevTools (only in development)
     provideStoreDevtools({
